@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "528978442680",
+    "project_id": "libido-500ae",
+    "storage_bucket": "libido-500ae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:528978442680:android:468d9b544af1aabb1d374d",
+        "android_client_info": {
+          "package_name": "com.nicola.libido"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "528978442680-epevl56oli9nosp4rqv0hn3vgu4mjkio.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBr3eVBfWV0gG5BbYdgtiY839-kpd1vdCo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "528978442680-epevl56oli9nosp4rqv0hn3vgu4mjkio.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
