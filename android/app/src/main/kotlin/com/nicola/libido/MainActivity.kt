@@ -1,4 +1,4 @@
-package com.nic.kamasutra
+package com.nicola.libido
 
 import io.flutter.embedding.android.FlutterActivity
 

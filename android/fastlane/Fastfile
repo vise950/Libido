@@ -1,0 +1,30 @@
+default_platform(:android)
+
+platform :android do
+  desc "Runs all the tests"
+  lane :test do
+#     gradle(task: "test", build_type: 'debug')
+  end
+
+  desc "Submit a new internal build to Google Play"
+  lane :internal do
+    Dir.chdir('../..') do
+        sh('flutter', 'clean')
+        sh('flutter', 'packages', 'get')
+        sh('flutter', 'build', 'appbundle', '--release')
+    end
+    upload_to_play_store(
+        track: 'internal',
+        release_status: 'draft',
+        aab: '../build/app/outputs/bundle/release/app-release.aab',
+        skip_upload_metadata: true,
+        skip_upload_images: true,
+        skip_upload_screenshots: true)
+  end
+
+  desc "Deploy a new version to the Google Play"
+  lane :release do
+    gradle(task: "clean assembleRelease", build_type: 'release')
+#     upload_to_play_store
+  end
+end

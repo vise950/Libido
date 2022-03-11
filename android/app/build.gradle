@@ -29,12 +29,12 @@ android {
     compileSdkVersion flutter.compileSdkVersion
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '11'
     }
 
     sourceSets {
@@ -42,19 +42,28 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.nic.kamasutra"
+        applicationId "com.nicola.libido"
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
 
-    buildTypes {
+    signingConfigs {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
+            keyAlias 'nicola_keystore'
+            keyPassword 'nicola950'
+            storePassword 'nicola950'
+            storeFile file("/Users/nicola/Documents/development/keystore_android/release_keystore")
+        }
+    }
+
+    buildTypes {
+        debug {
             signingConfig signingConfigs.debug
+        }
+        release {
+            signingConfig signingConfigs.release
         }
     }
 }
