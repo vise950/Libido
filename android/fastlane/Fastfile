@@ -8,19 +8,25 @@ platform :android do
 
   desc "Submit a new internal build to Google Play"
   lane :internal do
-    Dir.chdir('../..') do
-        sh('flutter', 'clean')
-        sh('flutter', 'packages', 'get')
-        sh('flutter', 'build', 'appbundle', '--release')
-    end
-    upload_to_play_store(
-        track: 'internal',
-        release_status: 'draft',
-        aab: '../build/app/outputs/bundle/release/app-release.aab',
-        skip_upload_metadata: true,
-        skip_upload_images: true,
-        skip_upload_screenshots: true)
+#     Dir.chdir('../..') do
+#         sh('flutter', 'clean')
+#         sh('flutter', 'packages', 'get')
+#         sh('flutter', 'build', 'appbundle', '--release')
+#     end
+#     upload_to_play_store(
+#         track: 'internal',
+#         release_status: 'draft',
+#         aab: '../build/app/outputs/bundle/release/app-release.aab',
+#         skip_upload_metadata: true,
+#         skip_upload_images: true,
+#         skip_upload_screenshots: true)
+
+    firebase_app_distribution(
+        app: '1:528978442680:android:468d9b544af1aabb1d374d',
+        firebase_cli_token: '1//09cPAwbz3z78dCgYIARAAGAkSNwF-L9Ir80jRIuZxXNiFFz43Nk0yXkIyPJep056sLXHjdx0CzvnBLlJvOrKGsUU6h3AMbCp3Ces',
+        android_artifact_type: "AAB")
   end
+
 
   desc "Deploy a new version to the Google Play"
   lane :release do
