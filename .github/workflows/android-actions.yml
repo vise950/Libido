@@ -2,7 +2,7 @@ name: Test, Build and Release Android
 on:
   push:
     branches:
-      - main
+      - fastlane_github_action
 jobs:
   deploy:
     runs-on: ubuntu-latest
