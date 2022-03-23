@@ -17,10 +17,9 @@ jobs:
           java-version: '12'
 
       - name: Setup ruby
-        uses: ruby/setup-ruby@v1
+      - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '2.6'
-          bundler-cache: true
+          ruby-version: '2.7.2'
 
       - name: run fastlane internal
         uses: maierj/fastlane-action@v2.2.0
