@@ -4,26 +4,31 @@ on:
     branches:
       - main
 jobs:
-  fastlane-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
       - name: Setup Java
         uses: actions/setup-java@v2
         with:
           distribution: 'zulu'
           java-version: '12'
-      - name: Setup ruby for fastlane
+
+      - name: Setup ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '2.6'
           bundler-cache: true
+
       - name: Setup Flutter
         uses: subosito/flutter-action@v2.3.0
         with:
           channel: master
-      uses: maierj/fastlane-action@v2.2.0
+
+      - name: run fastlane
+        uses: maierj/fastlane-action@v2.2.0
         with:
           lane: 'internal'
           subdirectory: android
