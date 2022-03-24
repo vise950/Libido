@@ -1,11 +1,12 @@
-name: Test, Build and Release Android
+name: Test, Build and Release on beta channel Android
 on:
+  workflow_dispatch:
   push:
     branches:
       - fastlane_github_action
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
+  init:
+    runs-on: macos-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -36,10 +37,25 @@ jobs:
           KEYSTORE_STORE_PASSWORD: ${{ secrets.KEYSTORE_STORE_PASSWORD }}
         working-directory: android
 
-      - name: run fastlane internal
+  #      - name: run fastlane internal
+  #        uses: maierj/fastlane-action@v2.2.0
+  #        with:
+  #          lane: 'beta'
+  #          subdirectory: android
+  #        env:
+  #          PLAY_STORE_CONFIG_JSON: ${{ secrets.PLAY_STORE_CONFIG_JSON }}
+
+  unit-test:
+    runs-on: macos-latest
+    needs: init
+    steps:
+      - name: Setup emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          script: ./gradlew connectedCheck
+      - name: run fastlane test
         uses: maierj/fastlane-action@v2.2.0
         with:
-          lane: 'internal'
+          lane: 'unit_test'
           subdirectory: android
-        env:
-          PLAY_STORE_CONFIG_JSON: ${{ secrets.PLAY_STORE_CONFIG_JSON }}
