@@ -13,6 +13,7 @@ platform :android do
         track: 'internal',
         release_status: 'draft',
         aab: '../build/app/outputs/bundle/release/app-release.aab',
+        json_key_data: ENV['PLAY_STORE_CONFIG_JSON'],
         skip_upload_metadata: true,
         skip_upload_images: true,
         skip_upload_screenshots: true)

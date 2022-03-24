@@ -1,2 +1,2 @@
-json_key_file("/Users/nicola/Documents/development/service_account_CI/815621064626-8ca10f89a359.json")
+# json_key_file("/Users/nicola/Documents/development/service_account_CI/815621064626-8ca10f89a359.json")
 package_name("com.nicola.libido")
