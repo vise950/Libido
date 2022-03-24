@@ -6,7 +6,7 @@ on:
       - fastlane_github_action
 jobs:
   init-enviroment:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -57,11 +57,12 @@ jobs:
           subdirectory: android
 
   integration-test:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     needs: init-enviroment
     steps:
       - name: Setup emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
           script: 'flutter test integration_test'
