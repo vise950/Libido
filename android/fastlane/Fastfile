@@ -8,7 +8,7 @@ platform :android do
 
   desc "Submit a new internal build to Google Play"
   lane :internal do
-    gradle(task: "clean bundleRelease")
+    sh "flutter build appbundle -v --no-deferred-components"
     upload_to_play_store(
         track: 'internal',
         release_status: 'draft',
