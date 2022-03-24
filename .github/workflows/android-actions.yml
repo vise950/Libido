@@ -53,7 +53,7 @@ jobs:
 
   unit-test:
     runs-on: macos-latest
-    needs: init
+    needs: init-enviroment
     steps:
       - name: run fastlane test
         uses: maierj/fastlane-action@v2.2.0
