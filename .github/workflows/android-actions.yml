@@ -23,11 +23,6 @@ jobs:
           bundler-cache: true
           working-directory: android
 
-      - name: Setup emulator
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 29
-
 #only if test passed configure keystore
 #      - name: Configure Keystore
 #        run: |
@@ -60,3 +55,13 @@ jobs:
         with:
           lane: 'unit_test'
           subdirectory: android
+
+  integration-test:
+    runs-on: macos-latest
+    needs: init-enviroment
+    steps:
+      - name: Setup emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          script: 'flutter test integration_test'

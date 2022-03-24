@@ -6,7 +6,12 @@ platform :android do
     sh "flutter test"
   end
 
-  desc "Submit a new internal build to Google Play"
+  desc "Runs integration test"
+  lane :integration_test do
+    sh "flutter test integration_test"
+  end
+
+  desc "Submit a new beta build to Google Play"
   lane :beta do
     sh "flutter build appbundle"
     upload_to_play_store(
@@ -30,7 +35,7 @@ platform :android do
 
   desc "Deploy a new production build to Google Play"
     lane :production do
-        sh "flutter build appbundle -v --no-deferred-components"
+        sh "flutter build appbundle"
         upload_to_play_store(
         track: 'production',
         aab: '../build/app/outputs/bundle/release/app-release.aab',
