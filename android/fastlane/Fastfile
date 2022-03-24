@@ -8,11 +8,7 @@ platform :android do
 
   desc "Submit a new internal build to Google Play"
   lane :internal do
-    Dir.chdir('../..') do
-        sh('flutter', 'clean')
-        sh('flutter', 'packages', 'get')
-        sh('flutter', 'build', 'appbundle', '--release')
-    end
+    gradle(task: "clean bundleRelease")
     upload_to_play_store(
         track: 'internal',
         release_status: 'draft',
