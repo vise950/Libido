@@ -5,7 +5,7 @@ on:
     branches:
       - fastlane_github_action
 jobs:
-  init:
+  init-enviroment:
     runs-on: macos-latest
     steps:
       - name: Checkout code
@@ -23,19 +23,25 @@ jobs:
           bundler-cache: true
           working-directory: android
 
-      - name: Configure Keystore
-        run: |
-          echo "$PLAY_STORE_UPLOAD_KEY" | base64 --decode > app/upload-keystore.jks
-          echo "storeFile=upload-keystore.jks" >> key.properties
-          echo "keyAlias=$KEYSTORE_KEY_ALIAS" >> key.properties
-          echo "storePassword=$KEYSTORE_STORE_PASSWORD" >> key.properties
-          echo "keyPassword=$KEYSTORE_KEY_PASSWORD" >> key.properties
-        env:
-          PLAY_STORE_UPLOAD_KEY: ${{ secrets.PLAY_STORE_UPLOAD_KEY }}
-          KEYSTORE_KEY_ALIAS: ${{ secrets.KEYSTORE_KEY_ALIAS }}
-          KEYSTORE_KEY_PASSWORD: ${{ secrets.KEYSTORE_KEY_PASSWORD }}
-          KEYSTORE_STORE_PASSWORD: ${{ secrets.KEYSTORE_STORE_PASSWORD }}
-        working-directory: android
+      - name: Setup emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+
+#only if test passed configure keystore
+#      - name: Configure Keystore
+#        run: |
+#          echo "$PLAY_STORE_UPLOAD_KEY" | base64 --decode > app/upload-keystore.jks
+#          echo "storeFile=upload-keystore.jks" >> key.properties
+#          echo "keyAlias=$KEYSTORE_KEY_ALIAS" >> key.properties
+#          echo "storePassword=$KEYSTORE_STORE_PASSWORD" >> key.properties
+#          echo "keyPassword=$KEYSTORE_KEY_PASSWORD" >> key.properties
+#        env:
+#          PLAY_STORE_UPLOAD_KEY: ${{ secrets.PLAY_STORE_UPLOAD_KEY }}
+#          KEYSTORE_KEY_ALIAS: ${{ secrets.KEYSTORE_KEY_ALIAS }}
+#          KEYSTORE_KEY_PASSWORD: ${{ secrets.KEYSTORE_KEY_PASSWORD }}
+#          KEYSTORE_STORE_PASSWORD: ${{ secrets.KEYSTORE_STORE_PASSWORD }}
+#        working-directory: android
 
   #      - name: run fastlane internal
   #        uses: maierj/fastlane-action@v2.2.0
@@ -49,11 +55,6 @@ jobs:
     runs-on: macos-latest
     needs: init
     steps:
-      - name: Setup emulator
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 29
-          script: ./gradlew connectedCheck
       - name: run fastlane test
         uses: maierj/fastlane-action@v2.2.0
         with:
