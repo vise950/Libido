@@ -24,7 +24,7 @@ jobs:
 
       - name: Configure Keystore
         run: |
-          echo "$PLAY_STORE_UPLOAD_KEY" | base64 --decode > app/upload-keystore.jks
+          echo "$PLAY_STORE_UPLOAD_KEY" | base64 --decode > app/upload-keystore.keystore
           echo "storeFile=upload-keystore.jks" >> key.properties
           echo "keyAlias=$KEYSTORE_KEY_ALIAS" >> key.properties
           echo "storePassword=$KEYSTORE_STORE_PASSWORD" >> key.properties
@@ -41,3 +41,5 @@ jobs:
         with:
           lane: 'internal'
           subdirectory: android
+        env:
+          PLAY_STORE_CONFIG_JSON: ${{ secrets.PLAY_STORE_CONFIG_JSON }}
