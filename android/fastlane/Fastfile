@@ -3,12 +3,16 @@ default_platform(:android)
 platform :android do
   desc "Runs unit test"
   lane :unit_test do
-    sh "flutter test"
+    Dir.chdir("../..") do
+        sh "flutter test"
+    end
   end
 
   desc "Runs integration test"
   lane :integration_test do
-    sh "flutter test integration_test"
+    Dir.chdir("../..") do
+        sh "flutter test integration_test"
+    end
   end
 
   desc "Submit a new beta build to Google Play"
