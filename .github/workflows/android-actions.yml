@@ -5,7 +5,7 @@ on:
     branches:
       - fastlane_github_action
 jobs:
-  CI:
+  init-enviroment:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
