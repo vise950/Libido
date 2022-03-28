@@ -29,12 +29,12 @@ jobs:
           lane: 'unit_test'
           subdirectory: android
 
-#      - name: Setup emulator and run integration test
-#        uses: reactivecircus/android-emulator-runner@v2
-#        with:
-#          api-level: 29
-#          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
-#          script: 'flutter test integration_test'
+      - name: Setup emulator and run integration test
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
+          script: 'flutter test integration_test'
 
 #only if test passed configure keystore
 #      - name: Configure Keystore
