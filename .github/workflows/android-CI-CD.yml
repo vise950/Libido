@@ -40,6 +40,9 @@ jobs:
     runs-on: ubuntu-latest
 #    needs: CI
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
       - name: Configure Keystore
         run: |
           echo "$PLAY_STORE_UPLOAD_KEY" | base64 --decode > app/upload-keystore.jks
