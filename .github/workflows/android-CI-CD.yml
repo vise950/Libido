@@ -1,6 +1,8 @@
-name: Test, Build and Release on beta channel Android
+name: Android CI/CD
 on:
   workflow_dispatch:
+    branches:
+      - fastlane_github_action
   push:
     branches:
       - fastlane_github_action
