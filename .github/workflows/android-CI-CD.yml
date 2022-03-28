@@ -46,8 +46,8 @@ jobs:
       KEYSTORE_KEY_PASSWORD: ${{ secrets.KEYSTORE_KEY_PASSWORD }}
       KEYSTORE_STORE_PASSWORD: ${{ secrets.KEYSTORE_STORE_PASSWORD }}
     steps:
-#      - name: Checkout code
-#        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 #
 #
 #        env:
