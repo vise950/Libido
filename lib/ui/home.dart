@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:libido/repository/sex_position_repository.dart';
 import 'package:libido/ui/sex_position_detail.dart';
@@ -16,7 +17,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Libido"),
+        title: const Text("app_name").tr(),
       ),
       body: SafeArea(
         child: Container(
@@ -59,9 +60,9 @@ class Home extends StatelessWidget {
           size: 30,
         ),
         label: const Text(
-          "all position",
+          "all_position_btn",
           style: TextStyle(fontSize: 20),
-        ),
+        ).tr(),
         style: ElevatedButton.styleFrom(
             padding:
                 const EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
@@ -82,9 +83,9 @@ class Home extends StatelessWidget {
           size: 30,
         ),
         label: const Text(
-          "random position",
+          "random_position_btn",
           style: TextStyle(fontSize: 20),
-        ),
+        ).tr(),
         style: ElevatedButton.styleFrom(
             padding:
                 const EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),

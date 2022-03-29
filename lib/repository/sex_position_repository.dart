@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:libido/model/sex_position.dart';
+import 'package:libido/util/util.dart';
 
 class SexPositionRepository {
   /// Singleton
@@ -18,7 +19,7 @@ class SexPositionRepository {
   List<SexPosition>? _sexPosition;
 
   Future<void> _loadData() async {
-    final json = await rootBundle.loadString('assets/json/kamasutra_en.json');
+    final json = await rootBundle.loadString(Util.jsonFile);
     final parsedJson = jsonDecode(json);
     _sexPosition = parsedJson
         .map<SexPosition>((json) => SexPosition.fromMap(json))
