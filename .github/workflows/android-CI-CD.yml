@@ -28,11 +28,11 @@ jobs:
           bundler-cache: true
           working-directory: android
 
-      - name: Run unit test
-        uses: maierj/fastlane-action@v2.2.0
-        with:
-          lane: 'unit_test'
-          subdirectory: android
+#      - name: Run unit test
+#        uses: maierj/fastlane-action@v2.2.0
+#        with:
+#          lane: 'unit_test'
+#          subdirectory: android
 
       # fix it
 #      - name: Run integration test test
@@ -42,7 +42,7 @@ jobs:
 #          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
 #          script: 'flutter test integration_test'
 
-      - name: run fastlane internal
+      - name: Build and release on beta channel
         uses: maierj/fastlane-action@v2.2.0
         with:
           lane: 'beta'
